@@ -6,6 +6,37 @@ from QoL import printException
 import time
 import sqlite3
 
+def findCompletedQuestList(quest_list):
+    cQuestList = []
+    i = 0
+    for quest in quest_list:
+        status = quest["properties"]["Status"]["status"]["name"]
+        if status == "Done":
+            cQuestList[i] = quest
+            i += 1
+        else: continue
+
+    return cQuestList
+
+def getQuestValues(quest):
+    newPXP = quest["properties"]["Next pXP"]["formula"]["number"]
+    newEXP = quest["properties"]["Next eXP"]["formula"]["number"]
+    knowledgeName = quest["properties"]["Experience"]["select"]["name"]
+
+    return newPXP, newEXP, knowledgeName
+
+def getPlayerValues(player):
+    knowledgeName = player["properties"]["Name"]["title"][0]["text"]["content"]
+    return knowledgeName
+
+def finishAnimation(animation_thread, start_time):
+    animation_thread.join()
+    end_time = time.time()
+    exec_time = end_time - start_time
+    exec_time = round(exec_time, 2)
+
+    return animation_thread, exec_time
+
 def applyXP(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
     done = [False]
     try:
@@ -27,34 +58,33 @@ def applyXP(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
 
         animation_thread.start()
         
-        for quest in quest_list:
-            status = quest["properties"]["Status"]["status"]["name"]
-            if status == "Done":
-                player_id = player_list[playerId]["id"]
-                quest_id = quest["id"]
+        cQuestList = findCompletedQuestList(quest_list)
 
-                newXP = quest["properties"]["Next pXP"]["formula"]["number"]
-                notion.pages.update(page_id=player_id,properties={"XP": {"number": newXP}})
-                notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Archived"}}})
+        for quest in cQuestList:
 
-                amount += 1
+            player_id = player_list[playerId]["id"]
+            quest_id = quest["id"]
 
-                knowledgeName = quest["properties"]["Experience"]["select"]["name"]
+            newPXP, newEXP, knowledgeName = getQuestValues(quest)
 
-                for player in player_list:
-                    if player["properties"]["Name"]["title"][0]["text"]["content"] == knowledgeName:
-                        
-                        newXP = quest["properties"]["Next eXP"]["formula"]["number"]
-                        experienceId = player["id"]
+            notion.pages.update(page_id=player_id,properties={"XP": {"number": newPXP}})
+            notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Archived"}}})
 
-                        notion.pages.update(page_id=experienceId,properties={"XP": {"number": newXP}})
-                        break
+            amount += 1
+
+            for player in player_list:
+
+                currentKnowledge = getPlayerValues(player)
+
+                if currentKnowledge != knowledgeName: continue
+                    
+                experienceId = player["id"]
+                notion.pages.update(page_id=experienceId,properties={"XP": {"number": newEXP}})
+                break
             
         done[0] = True
-        animation_thread.join()
-        end_time = time.time()
-        exec_time = end_time - start_time
-        exec_time = round(exec_time, 2)
+        
+        animation_thread, exec_time = finishAnimation(animation_thread, start_time)
 
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
