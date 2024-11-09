@@ -8,6 +8,7 @@ import schedule
 import time
 import sys
 import sqlite3
+
 from colorama import Fore, Style
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
@@ -119,7 +120,6 @@ def update_job():
 # * Main code --------------]
 
 try:
-
     schedule_jobs()
     schedule.every(3).hours.do(update_job)
 

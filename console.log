@@ -1,37 +1,8 @@
-[0m[30m23/09/2024, 10:47:05 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[30m23/09/2024, 10:47:06 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-[0m[33m] [0m28/09/2024, 12:51:04 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 12:51:04 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-HTTP Request: POST https://api.notion.com/v1/databases/ddbde259df214691916ee59e68f00a1f/query "HTTP/1.1 200 OK"
-[0m[33m] [0m28/09/2024, 12:51:47 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 12:51:47 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-HTTP Request: POST https://api.notion.com/v1/databases/ddbde259df214691916ee59e68f00a1f/query "HTTP/1.1 200 OK"
-[0m[33m] [0m28/09/2024, 12:56:14 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 12:56:14 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-HTTP Request: POST https://api.notion.com/v1/databases/ddbde259df214691916ee59e68f00a1f/query "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/10dbbc08-296b-80ae-bc4c-f367329c36cf "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/acf5af02-a90b-4c25-a7ac-343f08d77d6c "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/c555aaa9-aaad-40f7-aa0b-6e31cb94a6ea "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/5604e653-b657-4b11-aefd-56418281f0ec "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/955fb652-e506-4a83-b756-1d498d2082b7 "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/f5baf9f9-e007-4fef-8cf7-03ceaacf56ce "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/400f9cd4-dd48-4e35-9582-0f32c6fe1db9 "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/5d3b808c-aaed-4036-b162-792c6f5b8ab4 "HTTP/1.1 200 OK"
-[0m[33m] [0m28/09/2024, 13:01:02 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 13:01:02 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-HTTP Request: POST https://api.notion.com/v1/databases/ddbde259df214691916ee59e68f00a1f/query "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/fe3ad9b5-76ca-4bdc-b961-a2f69a9630f4 "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/c555aaa9-aaad-40f7-aa0b-6e31cb94a6ea "HTTP/1.1 200 OK"
-HTTP Request: PATCH https://api.notion.com/v1/pages/5604e653-b657-4b11-aefd-56418281f0ec "HTTP/1.1 200 OK"
-[0m[33m] [0m28/09/2024, 13:06:07 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 13:06:08 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-[0m[33m] [0m28/09/2024, 13:06:20 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 13:06:21 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-[0m[33m] [0m28/09/2024, 13:07:25 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m28/09/2024, 13:07:25 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-[0m[33m] [0m05/10/2024, 16:35:43 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m05/10/2024, 16:35:43 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-[0m[33m] [0m05/10/2024, 16:40:36 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m05/10/2024, 16:40:36 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
-[0m[33m] [0m05/10/2024, 18:57:45 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
-[0m[33m] [0m05/10/2024, 18:57:45 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
+[0m[33m] [0m09/11/2024, 11:51:28 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
+[0m[33m] [0m09/11/2024, 11:51:29 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
+[0m[33m] [0m09/11/2024, 11:52:15 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
+[0m[33m] [0m09/11/2024, 11:52:15 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
+[0m[33m] [0m09/11/2024, 11:54:30 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
+[0m[33m] [0m09/11/2024, 11:54:30 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
+[0m[33m] [0m09/11/2024, 11:55:04 [0m[34m[INFO][0m[35m         console.setup[0m Console logging is ready to go!
+[0m[33m] [0m09/11/2024, 11:55:04 [0m[34m[INFO][0m[35m         notion.setup[0m Notion client is setupped and ready to go!
