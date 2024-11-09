@@ -8,12 +8,10 @@ import sqlite3
 
 def findCompletedQuestList(quest_list):
     cQuestList = []
-    i = 0
     for quest in quest_list:
         status = quest["properties"]["Status"]["status"]["name"]
         if status == "Done":
-            cQuestList[i] = quest
-            i += 1
+            cQuestList.append(quest)
         else: continue
 
     return cQuestList
@@ -36,6 +34,12 @@ def finishAnimation(animation_thread, start_time):
     exec_time = round(exec_time, 2)
 
     return animation_thread, exec_time
+
+def updatePageXP(notion, page_id, newXP):
+    notion.pages.update(page_id=page_id,properties={"XP": {"number": newXP}})
+
+def setQuestStatus(notion, quest_id, status):
+    notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": f"{status}"}}})
 
 def applyXP(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
     done = [False]
@@ -67,8 +71,8 @@ def applyXP(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
 
             newPXP, newEXP, knowledgeName = getQuestValues(quest)
 
-            notion.pages.update(page_id=player_id,properties={"XP": {"number": newPXP}})
-            notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Archived"}}})
+            updatePageXP(notion, player_id, newPXP)
+            setQuestStatus(notion, quest_id, "Archived")
 
             amount += 1
 
@@ -79,7 +83,7 @@ def applyXP(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
                 if currentKnowledge != knowledgeName: continue
                     
                 experienceId = player["id"]
-                notion.pages.update(page_id=experienceId,properties={"XP": {"number": newEXP}})
+                updatePageXP(notion, experienceId, newEXP)
                 break
             
         done[0] = True
