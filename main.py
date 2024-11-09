@@ -8,6 +8,7 @@ import schedule
 import time
 import sys
 import sqlite3
+
 from colorama import Fore, Style
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
@@ -15,6 +16,7 @@ from notion_client import Client
 from Functions.resetQuests import resetQuests
 from Functions.updateXP import applyXP
 from Functions.displayStats import displayStats
+from Functions.processButtons import processButtons
 from QoL import printException
 
 local_tz = pytz.timezone('Europe/Warsaw')
@@ -116,12 +118,18 @@ def update_job():
     except Exception as e:
         printException(e)
 
+def button_job():
+    try:
+        processButtons(notion, PLAYER_DATABASE_ID)
+    except Exception as e:
+        printException(e)
+
 # * Main code --------------]
 
 try:
-
     schedule_jobs()
     schedule.every(3).hours.do(update_job)
+    schedule.every(30).minutes.do(button_job)
 
     while True:
         schedule.run_pending()
