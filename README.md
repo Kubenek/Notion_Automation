@@ -23,7 +23,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Documentation
 
-not yet, maybe I'll make a tutorial on it someday
+not yet, maybe I'll make a tutorial on it someday if it proves to be replicable and useful for someone
 
 
 ## Features
