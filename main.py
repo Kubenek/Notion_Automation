@@ -106,7 +106,7 @@ def schedule_jobs():
 
 def reset_job():
     try:
-        resetQuests(notion, QUEST_DATABASE_ID)
+        resetQuests(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID)
         displayStats()
     except Exception as e:
         printException(e)
