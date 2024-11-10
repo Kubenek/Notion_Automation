@@ -1,2 +1,18 @@
+# Environment file (if you use it for secrets or configuration)
 config.env
+
+# Notes file (if not needed in the repo)
 list.notes
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE/editor specific files
+.vscode/
+.idea/
+
+# Operating system-specific files
+.DS_Store
+Thumbs.db
