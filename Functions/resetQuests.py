@@ -3,6 +3,7 @@ from Functions.animate import animate
 import threading
 from datetime import datetime
 from QoL import printException
+from Functions.updateXP import updatePageXP
 import time
 
 def get_exec_time(start_time, end_time):
@@ -10,7 +11,13 @@ def get_exec_time(start_time, end_time):
     exec_time = round(exec_time, 2)
     return exec_time
 
-def resetQuests(notion, QUEST_DATABASE_ID):
+def getPlayerID(notion, PLAYER_DATABASE_ID):
+    query = notion.databases.query(PLAYER_DATABASE_ID)
+    player_list = query["results"]
+    playerId = len(player_list) - 1
+    return player_list[playerId]["id"]
+
+def resetQuests(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
     done = [False]
     try:
         start_time = time.time()
@@ -28,13 +35,23 @@ def resetQuests(notion, QUEST_DATABASE_ID):
         for quest in quest_list:
             status = quest["properties"]["Status"]["status"]["name"]
             type = quest["properties"]["Type"]["select"]["name"]
-            if status != "Not started":
-                quest_id = quest["id"]
 
-                if status == "Archived" and type == "Quest":
-                    notion.pages.update(page_id=quest_id, archived=True)
-                else:
-                    notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Not started"}}})
+            if status == "Not started" and type == "Daily Quest":
+                quest_xp = quest["properties"]["XP Reward"]["number"]
+                quest_xp *= -1
+                
+                player_id = getPlayerID(notion, PLAYER_DATABASE_ID)
+
+                updatePageXP(notion, player_id, quest_xp)
+
+                continue
+            
+            quest_id = quest["id"]
+
+            if status == "Archived" and type == "Quest":
+                notion.pages.update(page_id=quest_id, archived=True)
+            else:
+                notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Not started"}}})
 
         done[0] = True
         animation_thread.join()
