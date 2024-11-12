@@ -41,8 +41,16 @@ def resetQuests(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
                 quest_xp *= -1
                 
                 player_id = getPlayerID(notion, PLAYER_DATABASE_ID)
+                playerId = len(player_list) - 1
 
-                updatePageXP(notion, player_id, quest_xp)
+                query = notion.databases.query(PLAYER_DATABASE_ID)
+                player_list = query["results"]
+
+                player_xp = player_list[playerId]["XP"]["number"]
+
+                player_xp += quest_xp
+
+                updatePageXP(notion, player_id, player_xp)
 
                 continue
             
