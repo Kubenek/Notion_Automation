@@ -32,27 +32,23 @@ def resetQuests(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
 
         animation_thread.start()
 
+        total_xp = 0
+
         for quest in quest_list:
             status = quest["properties"]["Status"]["status"]["name"]
             type = quest["properties"]["Type"]["select"]["name"]
 
             if status == "Not started" and type == "Daily Quest":
                 quest_xp = quest["properties"]["XP Reward"]["number"]
-                quest_xp *= -1
                 
-                player_id = getPlayerID(notion, PLAYER_DATABASE_ID)
-                playerId = len(player_list) - 1
-
-                query = notion.databases.query(PLAYER_DATABASE_ID)
-                player_list = query["results"]
-
-                player_xp = player_list[playerId]["XP"]["number"]
-
-                player_xp += quest_xp
-
-                updatePageXP(notion, player_id, player_xp)
+                total_xp-=quest_xp
 
                 continue
+
+        for quest in quest_list:
+
+            status = quest["properties"]["Status"]["status"]["name"]
+            type = quest["properties"]["Type"]["select"]["name"]
             
             quest_id = quest["id"]
 
@@ -60,6 +56,15 @@ def resetQuests(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
                 notion.pages.update(page_id=quest_id, archived=True)
             else:
                 notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Not started"}}})
+
+
+        player_id = getPlayerID(notion, PLAYER_DATABASE_ID)
+        playerId = len(player_list) - 1
+        query = notion.databases.query(PLAYER_DATABASE_ID)
+        player_list = query["results"]
+        player_xp = player_list[playerId]["XP"]["number"]
+        player_xp+=total_xp
+        updatePageXP(notion, player_id, player_xp)
 
         done[0] = True
         animation_thread.join()
