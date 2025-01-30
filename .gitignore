@@ -3,6 +3,7 @@ config.env
 
 # Notes file (if not needed in the repo)
 list.notes
+Notion Automation.code-workspace
 
 # Python cache files
 __pycache__/

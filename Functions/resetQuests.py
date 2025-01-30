@@ -58,11 +58,11 @@ def resetQuests(notion, QUEST_DATABASE_ID, PLAYER_DATABASE_ID):
                 notion.pages.update(page_id=quest_id,properties={"Status": {"status": {"name": "Not started"}}})
 
 
-        player_id = getPlayerID(notion, PLAYER_DATABASE_ID)
-        playerId = len(player_list) - 1
         query = notion.databases.query(PLAYER_DATABASE_ID)
         player_list = query["results"]
-        player_xp = player_list[playerId]["XP"]["number"]
+        player_id = getPlayerID(notion, PLAYER_DATABASE_ID)
+        playerId = len(player_list) - 1
+        player_xp = player_list[playerId]["properties"]["XP"]["number"]
         player_xp+=total_xp
         updatePageXP(notion, player_id, player_xp)
 

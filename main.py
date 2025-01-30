@@ -120,6 +120,7 @@ def update_job():
 # * Main code --------------]
 
 try:
+    reset_job()
     schedule_jobs()
     schedule.every(3).hours.do(update_job)
 
